@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class HomeController {
+
+	@Autowired
+	private MemberService memberService;
 	
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
