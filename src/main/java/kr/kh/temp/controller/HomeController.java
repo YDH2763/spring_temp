@@ -4,6 +4,8 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,6 +69,16 @@ public class HomeController {
 			model.addAttribute("msg", "로그인에 실패했습니다.");
 		}
 		System.out.println(user);
+		return "message";
+	}
+	
+	@GetMapping("/logout")
+	public String logout(Model model, HttpSession session) {
+		
+		session.removeAttribute("user");
+		
+		model.addAttribute("url", "/");
+		model.addAttribute("msg", "로그아웃 했습니다.");
 		return "message";
 	}
 	
