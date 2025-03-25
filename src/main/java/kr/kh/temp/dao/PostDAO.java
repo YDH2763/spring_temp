@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import kr.kh.temp.model.vo.BoardVO;
+import kr.kh.temp.model.vo.PostVO;
 
 public interface PostDAO {
 
@@ -15,5 +16,7 @@ public interface PostDAO {
 	boolean updateBoard(@Param("board")BoardVO board);
 
 	boolean deleteBoard(@Param("bo_num")int num);
+
+	List<PostVO> selectPodtList(@Param("po_bo_num")Integer bo_num);
 
 }

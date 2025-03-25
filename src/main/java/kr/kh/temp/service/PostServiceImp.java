@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kr.kh.temp.dao.PostDAO;
 import kr.kh.temp.model.vo.BoardVO;
+import kr.kh.temp.model.vo.PostVO;
 
 @Service
 public class PostServiceImp implements PostService {
@@ -45,5 +46,10 @@ public class PostServiceImp implements PostService {
 	@Override
 	public boolean deleteBoard(int num) {
 		return postDao.deleteBoard(num);
+	}
+
+	@Override
+	public List<PostVO> getPostList(Integer bo_num) {
+		return postDao.selectPodtList(bo_num);
 	}
 }
