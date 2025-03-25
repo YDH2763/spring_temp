@@ -45,7 +45,7 @@ public class HomeController {
 			model.addAttribute("url", "/");
 			model.addAttribute("msg", "회원 가입에 성공했습니다.");
 		}else {
-			model.addAttribute("url", "signup?id="+member.getMe_id());
+			model.addAttribute("url", "/signup?id=" + member.getMe_id());
 			model.addAttribute("msg", "회원 가입에 실패했습니다.");
 		}
 		return "message";

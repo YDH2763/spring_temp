@@ -10,7 +10,7 @@
   	</insert>
   	
   	<select id="selectMember" resultType="MemberVO">
-  		select * from member where me_id=#{me_id}
-  	</select>
+		select * from member where me_id = #{me_id}
+	</select>
   	
 </mapper>

@@ -41,7 +41,7 @@ public class MemberServiceImp implements MemberService{
 		if(member == null) {
 			return null;
 		}
-		MemberVO user =memberDao.selectMember(member.getMe_id());
+		MemberVO user = memberDao.selectMember(member.getMe_id());
 		//아이디가 다른 경우
 		if(user == null) {
 			return null;
@@ -50,7 +50,7 @@ public class MemberServiceImp implements MemberService{
 		if(!passwordEncoder.matches(member.getMe_pw(), user.getMe_pw())) {
 			return null;
 		}
-		
+			
 		return user;
 	}
 }
