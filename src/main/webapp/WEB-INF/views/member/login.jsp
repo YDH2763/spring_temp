@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h1 class="mt-3">로그인</h1>
-	<form action="<s:url value="/login"/>" method="post">
+	<form action="<c:url value="/login"/>" method="post">
 		<div class="form-group">
 		  <label for="id">아이디:</label>
 		  <input type="text" class="form-control" id="id" name="me-id" value="${id}">
