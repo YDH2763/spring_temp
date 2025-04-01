@@ -1,13 +1,7 @@
 package kr.kh.temp.controller;
 
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.Locale;
-
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,14 +13,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import kr.kh.temp.model.vo.MemberVO;
 import kr.kh.temp.service.MemberService;
 
-
 @Controller
 public class HomeController {
-
+	
 	@Autowired
 	private MemberService memberService;
-	
-	
+
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home() {
 		
@@ -34,8 +26,8 @@ public class HomeController {
 	}
 	
 	@GetMapping("/signup")
-	public String signup() {
-		
+	public String signup(Model model, String id) {
+		model.addAttribute("id", id);
 		return "/member/signup";
 	}
 	
@@ -45,7 +37,7 @@ public class HomeController {
 			model.addAttribute("url", "/");
 			model.addAttribute("msg", "회원 가입에 성공했습니다.");
 		}else {
-			model.addAttribute("url", "signup?id="+member.getMe_id());
+			model.addAttribute("url", "/signup?id=" + member.getMe_id());
 			model.addAttribute("msg", "회원 가입에 실패했습니다.");
 		}
 		return "message";
@@ -56,19 +48,17 @@ public class HomeController {
 		model.addAttribute("id", id);
 		return "/member/login";
 	}
-	
 	@PostMapping("/login")
 	public String loginPost(Model model, MemberVO member) {
-		MemberVO user=memberService.login(member);
+		MemberVO user = memberService.login(member); 
 		if(user != null) {
 			model.addAttribute("url", "/");
 			model.addAttribute("msg", "로그인에 성공했습니다.");
 			model.addAttribute("user", user);
 		}else {
-			model.addAttribute("url", "signup?id="+member.getMe_id());
+			model.addAttribute("url", "/login?id=" + member.getMe_id());
 			model.addAttribute("msg", "로그인에 실패했습니다.");
 		}
-		System.out.println(user);
 		return "message";
 	}
 	
@@ -81,6 +71,5 @@ public class HomeController {
 		model.addAttribute("msg", "로그아웃 했습니다.");
 		return "message";
 	}
-	
 	
 }
