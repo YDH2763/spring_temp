@@ -7,5 +7,6 @@
 		<typeAlias type="kr.kh.temp.model.vo.MemberVO" alias="MemberVO"/>
 		<typeAlias type="kr.kh.temp.model.vo.BoardVO" alias="BoardVO"/>
 		<typeAlias type="kr.kh.temp.model.vo.PostVO" alias="PostVO"/>
+		<typeAlias type="kr.kh.temp.model.vo.FileVO" alias="FileVO"/>
 	</typeAliases>
 </configuration>

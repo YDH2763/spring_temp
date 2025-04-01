@@ -33,40 +33,32 @@ public class AdminController {
 		
 		if(postService.insertBoard(name)) {
 			model.addAttribute("msg", "게시판을 등록했습니다.");
-		}
-		else {
+		}else {
 			model.addAttribute("msg", "이미 등록된 게시판입니다.");
 		}
 		model.addAttribute("url", "/admin/board");
-		
 		return "message";
 	}
-	
 	@PostMapping("/board/update")
-	public String boardInsert(Model model, BoardVO board) {
+	public String boardUpdate(Model model, BoardVO board) {
 		
 		if(postService.updateBoard(board)) {
 			model.addAttribute("msg", "게시판을 수정했습니다.");
-		}
-		else {
+		}else {
 			model.addAttribute("msg", "이미 등록된 게시판입니다.");
 		}
 		model.addAttribute("url", "/admin/board");
-		
 		return "message";
 	}
-	
 	@GetMapping("/board/delete")
 	public String boardDelete(Model model, int num) {
 		
 		if(postService.deleteBoard(num)) {
 			model.addAttribute("msg", "게시판을 삭제했습니다.");
-		}
-		else {
+		}else {
 			model.addAttribute("msg", "게시판을 삭제하지 못했습니다.");
 		}
 		model.addAttribute("url", "/admin/board");
-		
 		return "message";
 	}
 }

@@ -9,7 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-bs4.min.js"></script>
 </head>
 <body>
-	<form action="<c:url value="/post/insert"/>" method="post">
+	<form action="<c:url value="/post/insert"/>" method="post" enctype="multipart/form-data">
 		<h1>게시글 등록</h1>
 		<div class="form-group">
 		  <label for="title">제목:</label>
@@ -29,6 +29,11 @@
 		  <label for="content">내용:</label>
 		  <textarea class="form-control" id="content" name="po_content"></textarea>
 		</div>
+		<div class="form-group">
+			<input type="file" name="fileList" class="form-control">
+			<input type="file" name="fileList" class="form-control">
+			<input type="file" name="fileList" class="form-control">
+		</div>
 		<button type="submit" class="btn btn-outline-success col-12 mb-3">게시글 등록</button>
 	</form>
 	<script>
@@ -37,18 +42,19 @@
         tabsize: 2,
         height: 400
       });
-      $("form").submit(funtion(e){
-    	  let title=$("[name=po_title]");
-    	  let title = obj.val().trim();
-    	  
-    	  if(title.length ==0){
-    		  alert("제목을 입력하세요.");
-    		  obj.focus();
-    		  return false;
-    	  }
+      $("form").submit(function(e) {
+    	  let obj = $("[name=po_title]");
+	      let title = obj.val().trim();
+	      
+	      if(title.length == 0){
+	    	  alert("제목을 입력하세요.");
+	    	  obj.focus();
+	    	  return false;
+	      }
     	  
       })
-     
+		
+		
     </script>
 </body>
 </html>
