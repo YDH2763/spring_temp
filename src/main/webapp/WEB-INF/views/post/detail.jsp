@@ -40,6 +40,16 @@
 			<a href="<c:url value="/download${file.fi_name}"/>" class="form-control" download="${file.fi_ori_name }">${file.fi_ori_name }</a>
 		</c:forEach>
 	</div>
+	<hr>
+	<div class="comment-container">
+		<div class="comment-wrap">
+		
+		</div>
+		<form class="comment-insert-form">
+			<textarea name="content"></textarea>
+			<button type="submit">댓글 등록</button>
+		</form>
+	</div>
 	<div class="mb-3 d-flex justify-content-between">
 		<a href="<c:url value="/post/list?bo_num=${post.po_bo_num}"/>" class="btn btn-outline-success">목록으로</a>
 		<c:if test="${post.po_me_id eq user.me_id }">
@@ -50,9 +60,34 @@
 		</c:if>
 	</div>
 	
-	<form action="">
 	
-	</form>
+	
+	<script type="text/javascript">
+		var cri={
+				page : 1,
+				po_num : ${post.po_num}
+		}
+		$(document).on("submit","comment-insert-form",function(e){
+			e.preventDefault();
+			var content=$(this).find("[name=content]").val();
+			
+			//댓글 내용을 입력 안한 경우
+			
+			$.ajax({
+				async : true,
+				url : '<c:url value="/comment/insert"/>', 
+				type : 'post', 
+				data : JSON.stringify({
+					co_po_num : cri.po_num,
+					co_content : content
+				}), 
+				contentType : "application/json; charset=utf-8",
+				success : function (data){
+					console.log(data);
+				}, 
+			});
+		})
+	</script>
 	
 </body>
 </html>

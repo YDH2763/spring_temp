@@ -2,6 +2,9 @@ package kr.kh.temp.model.vo;
 
 import java.util.Date;
 
+import lombok.Data;
+
+@Data
 public class CommentVO {
 	
 	int co_num;
