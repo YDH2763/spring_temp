@@ -7,11 +7,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PostCriteria extends Criteria {
 
-	private int po_bo_num;
+	int bo_num;
 
-	public PostCriteria(int page, int perPageNum) {
-		super(page, perPageNum);
+	@Override
+	public String toString() {
+		return "PostCriteria [bo_num=" + bo_num + "," + super.toString() +  "]";
 	}
-	
 	
 }

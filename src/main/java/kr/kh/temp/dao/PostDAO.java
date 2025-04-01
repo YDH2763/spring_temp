@@ -39,4 +39,6 @@ public interface PostDAO {
 
 	FileVO selectFile(@Param("fi_num")int fi_num);
 
+	int selectCountPostList(@Param("cri")Criteria cri);
+
 }

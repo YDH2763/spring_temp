@@ -15,6 +15,8 @@ import kr.kh.temp.model.vo.FileVO;
 import kr.kh.temp.model.vo.MemberVO;
 import kr.kh.temp.model.vo.PostVO;
 import kr.kh.temp.pagination.Criteria;
+import kr.kh.temp.pagination.PageMaker;
+import kr.kh.temp.pagination.PostCriteria;
 import kr.kh.temp.utils.UploadFileUtils;
 
 @Service
@@ -210,5 +212,14 @@ public class PostServiceImp implements PostService {
 	@Override
 	public List<FileVO> getFileList(int po_num) {
 		return postDao.selectFileList(po_num);
+	}
+
+	@Override
+	public PageMaker getPageMaker(Criteria cri) {
+		if(cri == null) {
+			return null;
+		}
+		int count = postDao.selectCountPostList(cri);
+		return new PageMaker(3,cri,count);
 	}
 }

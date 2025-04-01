@@ -49,5 +49,10 @@
 			</div>
 		</c:if>
 	</div>
+	
+	<form action="">
+	
+	</form>
+	
 </body>
 </html>

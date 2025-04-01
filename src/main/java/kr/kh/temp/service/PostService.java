@@ -9,6 +9,7 @@ import kr.kh.temp.model.vo.FileVO;
 import kr.kh.temp.model.vo.MemberVO;
 import kr.kh.temp.model.vo.PostVO;
 import kr.kh.temp.pagination.Criteria;
+import kr.kh.temp.pagination.PageMaker;
 import kr.kh.temp.pagination.PostCriteria;
 
 public interface PostService {
@@ -34,5 +35,7 @@ public interface PostService {
 	boolean updatePost(PostVO post, MemberVO user, MultipartFile[] fileList, int[] delNums);
 
 	List<FileVO> getFileList(int po_num);
+
+	PageMaker getPageMaker(Criteria cri);
 
 }

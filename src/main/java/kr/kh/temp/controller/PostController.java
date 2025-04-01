@@ -36,11 +36,11 @@ public class PostController {
 		System.out.println(list);
 		List<BoardVO> boardList = postService.getBoardList();
 		
-		//PageMaker pm = postService.getPageMaker(cri);
+		PageMaker pm = postService.getPageMaker(cri);
 		
 		model.addAttribute("list", list);
 		model.addAttribute("boardList", boardList);
-		//model.addAttribute("pm", pm);
+		model.addAttribute("pm", pm);
 		return "/post/list";
 	}
 	
