@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import kr.kh.temp.dao.PostDAO;
 import kr.kh.temp.model.vo.BoardVO;
 import kr.kh.temp.model.vo.FileVO;
+import kr.kh.temp.model.vo.LikeVO;
 import kr.kh.temp.model.vo.MemberVO;
 import kr.kh.temp.model.vo.PostVO;
 import kr.kh.temp.pagination.Criteria;
@@ -222,4 +223,27 @@ public class PostServiceImp implements PostService {
 		int count = postDao.selectCountPostList(cri);
 		return new PageMaker(3,cri,count);
 	}
+
+	@Override
+	public int updateLike(LikeVO like, MemberVO user) {
+		if( user==null /*|| like == null*/) {
+			return -2;
+		}
+		LikeVO dbLike=postDao.selectLike(like.getLi_po_num(),user.getMe_id());
+		//LikeVO dbLike=postDao.selectLike(like.getLi_po_num(),"admin");
+		if(dbLike == null) {
+			postDao.insertLike(like.getLi_po_num(), user.getMe_id(),  like.getLi_state());
+			//postDao.insertLike(like.getLi_po_num(), "admin", like.getLi_state());
+			postDao.updatePostLike(like.getLi_po_num());
+			return like.getLi_state();
+		}
+		if(dbLike.getLi_state() ==like.getLi_state()) {
+			like.setLi_state(0);
+		}
+		postDao.updateLike(dbLike.getLi_num(),like.getLi_state());
+		postDao.updatePostLike(like.getLi_po_num());
+		return like.getLi_state();
+		
+	}
+	
 }

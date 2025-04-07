@@ -30,6 +30,12 @@
 		<label>조회수</label>
 		<div class="form-control">${post.po_view}</div>
 	</div>
+	
+	<div class="form-group d-flex justify-content-center" id="btns">
+		<button class="btn btn-outline-success mr-2 btn-up" data-num="${post.po_num}" data-state="1">추천<span>(${post.po_up})</span></button>
+		<button class="btn btn-outline-danger ml-2 btn-down" data-num="${post.po_num}" data-state="-1">비추천<span>(${post.po_down})</span></button>
+	</div>
+	
 	<div class="form-group">
 		<label>내용</label>
 		<div class="form-control" style="min-height: 400px;">${post.po_content}</div>
@@ -158,6 +164,44 @@
 				}
 			});
 		})
+	</script>
+	
+	<script type="text/javascript">
+		$(document).on("click",".btn-up,.btn-down",function(e){
+			
+			if('${user.me_id}'==''){
+				alert("로그인이 필요한 서비스입니다.");
+				return;
+			}
+			
+			let num=$(this).data("num");
+			let state=$(this).data("num");
+			
+			$.ajax({
+				async : true,
+				url : '<c:url value="/post/like"/>', 
+				type : 'post', 
+				data : JSON.stringify({
+					li_state:state,
+					li_po_num : num
+				}),
+				contentType : "application/json; charset=utf-8"
+				success : function (data){
+					switch(data){
+					case 1:
+						alert("추천!")
+						break;
+					case -1:
+						alert("비추천!")
+						break;
+					case 0:
+						alert((state == 1 ? "추천" : "비추천")+" 취소");
+						break;
+					}
+					location.reload();
+				}
+			});
+		});
 	</script>
 </body>
 </html>
